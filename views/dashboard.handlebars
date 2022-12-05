@@ -1,0 +1,36 @@
+<h2 class="text center mb-3">Post History</h2>
+{{#if posts.length}}
+<div>
+    {{#each posts as |post|}}
+    <div class="card">
+        <div class="card-header">
+            <h3><a class="link" href="/post/{{post.id}}">{{post.heading}}</a></h3>
+        </div>
+        <div class="card-body">
+            <p class="card-text">{{post.content}}</p>
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/if}}
+<div>
+    <div class="card">
+        <h3 class="card-header">New Post</h3>
+        <form class="card-body" id="new-post-form">
+            <div class="mb-3">
+                <label for="post-heading" class="form-label">Heading</label>
+                <input type="text" id="post-heading" name="post-heading" class="form-input w-100"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="content">Content</label>
+                <textarea id="content" name="content" class="form-input w-100" aria-label="with textarea" style="height: 300px"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</div>
+
+<script src="/js/new-post.js"></script>
+

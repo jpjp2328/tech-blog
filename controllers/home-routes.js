@@ -91,6 +91,9 @@ router.get('/dashboard', withAuth, (req, res) => {
         return;
     }
     Post.findAll({
+        where: {
+            user_id: req.session.user_id
+        },
         attributes: ['id','heading','content'],
         include: [{
             model: User,
