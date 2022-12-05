@@ -6,22 +6,19 @@ const withAuth = require('../utils/Auth');
 // Get all post for homepage
 router.get('/', (req, res) => {
     Post.findAll({
-        attributes: ['id','heading','content','created_at'],
+        attributes: ['id','heading','content'],
         include: [{
             model: User,
             attributes: ['username']
         },
         {
             model: Comment,
-            attributes: ['id', 'text', 'user_id', 'post_id', 'created_at'],
+            attributes: ['id', 'text', 'user_id', 'post_id'],
             include: {
                 model: User,
                 attributes: ['username']
             }
-        }],
-        order: [
-            ['created_at', 'DESC'],
-        ]
+        }]
     })
     .then((postData) => {
         const posts = postData.map((post) => post.get({ plain: true }));
@@ -39,14 +36,14 @@ router.get('/post/:id', (req, res) => {
         where: {
             id: req.params.id,
         },
-        attributes: ['id','heading','content', 'created_at'],
+        attributes: ['id','heading','content'],
         include: [{
             model: User,
             attributes: ['username']
         },
         {
             model: Comment,
-            attributes: ['id', 'text', 'user_id', 'post_id', 'created_at'],
+            attributes: ['id', 'text', 'user_id', 'post_id'],
             include: {
                 model: User,
                 attributes: ['username']
@@ -94,22 +91,19 @@ router.get('/dashboard', withAuth, (req, res) => {
         return;
     }
     Post.findAll({
-        attributes: ['id','heading','content','created_at'],
+        attributes: ['id','heading','content'],
         include: [{
             model: User,
             attributes: ['username']
         },
         {
             model: Comment,
-            attributes: ['id', 'text', 'user_id', 'post_id', 'created_at'],
+            attributes: ['id', 'text', 'user_id', 'post_id'],
             include: {
                 model: User,
                 attributes: ['username']
             }
-        }],
-        order: [
-            ['created_at', 'DESC'],
-        ]
+        }]
     })
     .then((postData) => {
         const posts = postData.map((post) => post.get({ plain: true }));
