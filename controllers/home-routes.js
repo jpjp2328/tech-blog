@@ -21,8 +21,10 @@ router.get('/', (req, res) => {
                 model: User,
                 attributes: ['username']
             }
-        }
-    ]
+        }],
+        order: [
+            ['created_at', 'DESC'],
+        ]
     })
     .then((postData) => {
         const posts = postData.map((post) => post.get({ plain: true }));
@@ -89,6 +91,41 @@ router.get('/signup', (req, res) => {
 });
 
 // Dashboard route 
+router.get('/dashboard', (req, res) => {
+    if (!(req.session.loggedIn)) {
+        res.redirect('/');
+        return;
+    }
+    Post.findAll({
+        where: {
+            user_id: req.session.user_id,
+        },
+        attributes: ['id','heading','content','created_at'],
+        include: [{
+            model: User,
+            attributes: ['username']
+        },
+        {
+            model: Comment,
+            attributes: ['id', 'text', 'user_id', 'post_id', 'created_at'],
+            include: {
+                model: User,
+                attributes: ['username']
+            }
+        }],
+        order: [
+            ['created_at', 'DESC'],
+        ]
+    })
+    .then((postData) => {
+        const posts = postData.map((post) => post.get({ plain: true }));
+        res.render('dashboard', { posts, loggedIn: req.session.loggedIn });
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
 
 
 module.exports = router;
