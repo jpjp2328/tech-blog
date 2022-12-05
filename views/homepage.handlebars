@@ -1,13 +1,15 @@
-<ul class="post">
+<article class="post">
     {{#each posts as |post|}}
-    <li id={{post.id}}>
-        <div>
-            <h3>{{post.heading}}</h3>
-            <p>Posted by {{post.user.username}}</p>
+    <div class="card mb-4">
+        <div class="card-header" style="">
+            <h3 class="card-title">
+                <a href="/post/{{post.id}}">{{post.heading}}</a>
+            </h3>
+            <p class="mb-2">Posted by {{post.user.username}}</p>
         </div>
-        <p>{{post.content}}</p>
-    </li>
+        <div class="card-body">
+            <p class="card-text">{{post.content}}</p>
+        </div>
+    </div>
     {{/each}}
-</ul>
-
-<script src="/js/homepage.js"></script>
+</article>
