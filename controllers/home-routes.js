@@ -98,14 +98,6 @@ router.get('/dashboard', withAuth, (req, res) => {
         include: [{
             model: User,
             attributes: ['username']
-        },
-        {
-            model: Comment,
-            attributes: ['id', 'text', 'user_id', 'post_id'],
-            include: {
-                model: User,
-                attributes: ['username']
-            }
         }]
     })
     .then((postData) => {
