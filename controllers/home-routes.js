@@ -91,7 +91,7 @@ router.get('/signup', (req, res) => {
 });
 
 // Dashboard route 
-router.get('/dashboard', (req, res) => {
+router.get('/dashboard', withAuth, (req, res) => {
     if (!(req.session.loggedIn)) {
         res.redirect('/');
         return;
