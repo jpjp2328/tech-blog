@@ -53,6 +53,18 @@ router.get('/:id', (req, res) => {
 });
 
 // POST Creating new post
+router.post('/', withAuth, (req, res) => {
+    Post.create({
+        heading: req.body.heading,
+        content: req.body.content,
+        user_id: req.session.user_id,
+    })
+    .then((postData) => res.json(postData))
+    .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
 
 // PUT Update post
 
