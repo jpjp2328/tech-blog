@@ -1,0 +1,40 @@
+<div class="card mb-4">
+    <div class="card-header" style="">
+        <h3 class="card-title">
+            <a href="/post/{{post.id}}">{{post.heading}}</a>
+        </h3>
+        <p class="mb-2">Posted by {{post.user.username}}</p>
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{post.content}}</p>
+    </div>
+</div>
+
+{{#if post.comments}}
+<div>
+    {{#each post.comments as |comment|}}
+    <div class="card">
+        <div class="comment card-body">
+            <div class="text">
+                <p> {{comment.text}}</p>
+                <p> - {{comment.user.username}}</p>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/if}}
+
+<!--To Do: Create comment form for loggedIn users to comment on post-->
+{{#if loggedIn}}
+<div class="card">
+    <form class="card-body comment-form" id="comment-form">
+        <label class="form-label">Comment</label>
+        <input id="comment" name="comment-body" class="form-input"/>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<script src="/js/comment.js"></script>
+{{/if}}
