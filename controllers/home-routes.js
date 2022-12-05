@@ -6,9 +6,6 @@ const withAuth = require('../utils/Auth');
 // Get all post for homepage
 router.get('/', (req, res) => {
     Post.findAll({
-        where: {
-            user_id: req.session.user_id,
-        },
         attributes: ['id','heading','content','created_at'],
         include: [{
             model: User,
@@ -97,9 +94,6 @@ router.get('/dashboard', withAuth, (req, res) => {
         return;
     }
     Post.findAll({
-        where: {
-            user_id: req.session.user_id,
-        },
         attributes: ['id','heading','content','created_at'],
         include: [{
             model: User,
