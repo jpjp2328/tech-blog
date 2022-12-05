@@ -23,7 +23,7 @@ npm i OR npm install
 ## Usage
 - Visit the deployed application to use.
 
-Deployed Application - 
+Deployed Application - https://jpjp2328-tech-blog.herokuapp.com
 
 - Users would be directed to the home page, with existing posts on display. Users can click on the posts and be redirected to a page where they can view the post and its related comments. Click on the top right button to view the dropdown navbar. From the navbar you can go back to the homepage, view dashboard or login. Users can log in or Sign up. Once user had logged in/sign up they would have access to dashboard where they can see their post histories. Logged in users would also now be able to comment on posts as well.
 
