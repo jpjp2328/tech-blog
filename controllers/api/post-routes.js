@@ -69,3 +69,5 @@ router.post('/', withAuth, (req, res) => {
 // PUT Update post
 
 // DELETE posts
+
+module.exports = router;
